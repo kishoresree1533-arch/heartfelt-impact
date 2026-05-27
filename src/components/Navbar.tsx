@@ -6,6 +6,7 @@ const links = [
   { label: "Story", href: "#story" },
   { label: "Impact", href: "#impact" },
   { label: "Gallery", href: "#gallery" },
+  { label: "Real Work", href: "#real-impact" },
   { label: "Donate", href: "#donate" },
   { label: "Contact", href: "#contact" },
 ];
@@ -23,28 +24,33 @@ const Navbar = () => {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-1000 ${
           scrolled
-            ? "bg-background/90 shadow-sm backdrop-blur-md"
+            ? "bg-background/80 border-b border-border shadow-[0_4px_30px_rgba(0,0,0,0.03)] backdrop-blur-xl"
             : "bg-transparent"
         }`}
-        initial={{ y: -80 }}
+        initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <a href="#" className={`font-display text-xl transition-colors ${scrolled ? 'text-foreground' : 'text-primary-foreground'}`}>
-            Hope Foundation
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-6">
+          <a 
+            href="#" 
+            className={`font-display text-2xl tracking-tight transition-all duration-700 ${
+              scrolled ? 'text-primary' : 'text-primary-foreground'
+            }`}
+          >
+            Iraithuligal <span className="text-gold italic">Iyakkam</span>
           </a>
 
           {/* Desktop */}
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden items-center gap-10 md:flex">
             {links.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
-                className={`text-xs uppercase tracking-[0.2em] transition-colors hover:text-gold ${
-                  scrolled ? 'text-foreground/70' : 'text-primary-foreground/70'
+                className={`text-[11px] font-bold uppercase tracking-[0.3em] transition-colors hover:text-gold ${
+                  scrolled ? 'text-foreground/80' : 'text-primary-foreground/80'
                 }`}
               >
                 {l.label}

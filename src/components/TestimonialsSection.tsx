@@ -2,43 +2,44 @@ import ScrollReveal from "./ScrollReveal";
 
 const testimonials = [
   {
-    quote: "I never believed a stranger could care this much. They gave my son a second chance at life.",
-    name: "Sunita Devi",
-    role: "Mother of 3, Rajasthan",
+    quote: "I never imagined that strangers could care this much about my son's life. They truly gave him a second chance.",
+    name: "Manonmani",
+    role: "Parent, Tirunelveli",
   },
   {
-    quote: "The school they built in our village changed everything. My daughters now dream of becoming doctors.",
-    name: "Ramesh Kumar",
-    role: "Farmer, Bihar",
+    quote: "The school built in our village changed everything. My daughter now dreams of becoming a doctor and serving our people.",
+    name: "Muthuramalingam",
+    role: "Farmer, Madurai",
   },
   {
-    quote: "When the floods took everything, they were the first ones there. Not with promises — with action.",
-    name: "Fatima Begum",
-    role: "Flood Survivor, Assam",
+    quote: "When the floods took everything, they were the first ones on the ground. Not with promises, but with real action.",
+    name: "Arulmozhi",
+    role: "Fisherman, Cuddalore",
   },
 ];
 
 const TestimonialsSection = () => {
   return (
-    <section className="bg-background py-28 md:py-40">
+    <section className="bg-background py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <ScrollReveal>
           <p className="text-center text-sm uppercase tracking-[0.3em] text-gold">Voices of Hope</p>
           <h2 className="mt-4 text-center font-display text-3xl font-medium md:text-5xl">
-            What They Say
+            From the People We Serve
           </h2>
         </ScrollReveal>
 
-        <div className="mt-20 grid gap-8 md:grid-cols-3">
+        <div className="mt-24 grid gap-16 md:grid-cols-3">
           {testimonials.map((t, i) => (
             <ScrollReveal key={i} delay={i * 0.15}>
-              <div className="border-t border-gold/30 pt-8">
-                <p className="font-display text-lg italic leading-relaxed text-muted-foreground">
-                  "{t.quote}"
+              <div className="group border-l border-gold/20 pl-10 transition-all duration-700 hover:border-gold">
+                <span className="font-display text-5xl text-gold/10 transition-colors group-hover:text-gold/30">“</span>
+                <p className="mt-1 font-display text-xl leading-relaxed text-muted-foreground transition-colors group-hover:text-foreground">
+                  {t.quote}
                 </p>
-                <div className="mt-6">
-                  <p className="font-display text-base">{t.name}</p>
-                  <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">{t.role}</p>
+                <div className="mt-10">
+                  <p className="font-display text-lg tracking-tight">{t.name}</p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.25em] text-muted-foreground/60">{t.role}</p>
                 </div>
               </div>
             </ScrollReveal>

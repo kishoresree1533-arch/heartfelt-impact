@@ -1,70 +1,77 @@
 import { motion } from "framer-motion";
-import heroImage from "@/assets/hero-image.jpg";
 import { ChevronDown } from "lucide-react";
+import heroImage from "@/assets/premium_hero_tamil.png";
 
 const HeroSection = () => {
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Background Image with slow zoom */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-primary z-0">
         <img
           src={heroImage}
-          alt="Humanitarian worker holding hands with elderly person"
+          alt="Emotional cinematic moment"
           className="h-full w-full object-cover animate-slow-zoom"
           width={1920}
           height={1080}
         />
         {/* Dark cinematic overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        <div className="absolute inset-0 bg-black/40 bg-gradient-to-b from-black/60 via-transparent to-black/70 z-10" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-        <motion.p
-          className="mb-6 text-sm font-body tracking-[0.3em] uppercase text-gold-light"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-          A Call to Compassion
-        </motion.p>
+        <div className="overflow-hidden">
+          <motion.p
+            className="mb-8 text-xs font-body tracking-[0.5em] uppercase text-gold-light"
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Since 2021 — A Legacy of Care
+          </motion.p>
+        </div>
 
-        <motion.h1
-          className="max-w-4xl text-4xl font-display font-medium leading-tight tracking-tight text-primary-foreground sm:text-5xl md:text-7xl"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          Someone Out There <br />
-          <span className="italic text-gold-light">Needs You Today</span>
-        </motion.h1>
+        <div className="overflow-hidden">
+          <motion.h1
+            className="mb-6 max-w-5xl text-4xl font-display font-medium leading-[1.1] tracking-tight text-white sm:text-6xl md:text-7xl"
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1.5, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Changing Lives <br />
+            <span className="font-display italic text-gold-light">One Story at a Time</span>
+          </motion.h1>
+        </div>
 
         <motion.p
-          className="mt-6 max-w-lg text-lg font-light text-primary-foreground/80"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
+          className="max-w-xl text-lg font-light leading-relaxed text-white/70 md:text-xl"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          A small act of kindness can change an entire life.
+          We provide more than just aid; we provide a future. <br />
+          Join us in rewriting the narrative for thousands across Tamil Nadu.
         </motion.p>
 
         <motion.div
-          className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
+          className="mt-12 flex flex-col items-center gap-6 sm:flex-row"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.6 }}
         >
           <a
             href="#donate"
-            className="rounded-none border border-gold bg-gold px-10 py-4 text-sm font-medium uppercase tracking-[0.2em] text-primary transition-all duration-500 hover:bg-transparent hover:text-gold-light"
+            className="group relative overflow-hidden bg-gold px-12 py-5 text-[10px] font-bold uppercase tracking-[0.5em] text-primary transition-all duration-700 hover:scale-105 hover:bg-white rounded-full shadow-lg hover:shadow-gold/20"
           >
-            Donate Now
+            <span className="relative z-10 transition-colors duration-700 group-hover:text-black">Donate Now</span>
+            <div className="absolute inset-0 -translate-x-full bg-white transition-transform duration-700 group-hover:translate-x-0" />
           </a>
           <a
             href="#story"
-            className="rounded-none border border-primary-foreground/40 px-10 py-4 text-sm font-medium uppercase tracking-[0.2em] text-primary-foreground/90 transition-all duration-500 hover:border-gold-light hover:text-gold-light"
+            className="group relative overflow-hidden border border-white/40 px-12 py-5 text-[10px] font-bold uppercase tracking-[0.5em] text-white transition-all duration-700 hover:scale-105 hover:border-gold hover:text-black rounded-full hover:shadow-lg hover:shadow-white/10"
           >
-            See Their Story
+            <span className="relative z-10">See Our Work</span>
+            <div className="absolute inset-0 -translate-y-full bg-gold transition-transform duration-700 group-hover:translate-y-0" />
           </a>
         </motion.div>
       </div>

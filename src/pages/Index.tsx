@@ -3,16 +3,17 @@ import HeroSection from "@/components/HeroSection";
 import StorySection from "@/components/StorySection";
 import ImpactSection from "@/components/ImpactSection";
 import ServicesSection from "@/components/ServicesSection";
-import GallerySection from "@/components/GallerySection";
+
 import FounderSection from "@/components/FounderSection";
 import DonationSection from "@/components/DonationSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import RealImpact from "@/components/RealImpact";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden flex flex-col w-full max-w-[100vw]">
       <Navbar />
       <HeroSection />
       <StorySection />
@@ -20,9 +21,8 @@ const Index = () => {
         <ImpactSection />
       </div>
       <ServicesSection />
-      <div id="gallery">
-        <GallerySection />
-      </div>
+
+      <RealImpact />
       <FounderSection />
       <DonationSection />
       <TestimonialsSection />

@@ -1,28 +1,23 @@
 import ScrollReveal from "./ScrollReveal";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-import gallery6 from "@/assets/gallery-6.jpg";
+import galleryElderly from "@/assets/tamil_elderly_hero.png";
 
 const images = [
-  { src: gallery1, alt: "Volunteers distributing food" },
-  { src: gallery2, alt: "Children playing at school" },
-  { src: gallery3, alt: "Medical camp for children" },
-  { src: gallery4, alt: "Community water well" },
-  { src: gallery5, alt: "Elderly receiving warm blankets" },
-  { src: gallery6, alt: "Students studying under a tree" },
+  { src: galleryElderly, alt: "Tamil elder with silent resilience" },
+  { src: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=800&auto=format&fit=crop", alt: "Hands of compassion" },
+  { src: "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?q=80&w=800&auto=format&fit=crop", alt: "Tamil children in village" },
+  { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop", alt: "Community hopeful moments" },
+  { src: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=800&auto=format&fit=crop", alt: "Service in action" },
+  { src: "https://images.unsplash.com/photo-1524069290683-0457abfe42c3?q=80&w=800&auto=format&fit=crop", alt: "Empowered future" },
 ];
 
 const GallerySection = () => {
   return (
-    <section className="bg-warm-alt py-28 md:py-40">
+    <section className="bg-warm-alt pt-8 pb-12 md:pt-12 md:pb-12">
       <div className="mx-auto max-w-6xl px-6">
         <ScrollReveal>
-          <p className="text-center text-sm uppercase tracking-[0.3em] text-gold">Moments of Change</p>
+          <p className="text-center text-sm uppercase tracking-[0.3em] text-gold">Captures of Care</p>
           <h2 className="mt-4 text-center font-display text-3xl font-medium md:text-5xl">
-            Every Face Tells a Story
+            Moments of Transformation
           </h2>
         </ScrollReveal>
 

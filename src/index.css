@@ -59,6 +59,11 @@
     @apply border-border;
   }
 
+  html, body {
+    @apply overflow-x-hidden;
+    max-width: 100vw;
+  }
+
   body {
     @apply bg-background text-foreground font-body antialiased;
   }
@@ -89,4 +94,27 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Custom Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--warm-bg));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--gold-light) / 0.3);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--gold));
+}
+
+::selection {
+  background-color: hsl(var(--gold) / 0.2);
+  color: hsl(var(--dark-section));
 }
