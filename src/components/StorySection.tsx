@@ -45,28 +45,24 @@ const PremiumSlider = ({ images, accentColor = "bg-red-500", label = "Live", lab
   }, [images.length]);
 
   return (
-    <div className="relative aspect-[4/5] overflow-hidden bg-muted shadow-2xl group">
+    <div className="relative rounded-2xl overflow-hidden bg-muted shadow-xl group max-w-sm mx-auto aspect-[3/4]">
       {/* Images */}
       {images.map((img, i) => (
         <img
           key={i}
           src={img}
           alt={`${label} ${i + 1}`}
-          className="absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-in-out"
+          className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out"
           style={{
             opacity: i === current ? 1 : 0,
-            transform: i === current
-              ? "scale(1.04)"
-              : i === (current - 1 + images.length) % images.length
-                ? "scale(1.01)"
-                : "scale(1)",
+            transform: i === current ? "scale(1.02)" : "scale(1)",
             zIndex: i === current ? 2 : 1,
           }}
         />
       ))}
 
       {/* Dark overlay that lifts on hover */}
-      <div className="absolute inset-0 bg-black/25 group-hover:bg-black/5 transition-colors duration-1000 z-10" />
+      <div className="absolute inset-0 bg-black/25 group-hover:bg-black/5 transition-colors duration-1000 z-10 rounded-2xl" />
 
       {/* Progress bar */}
       <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white/10 z-20">
@@ -165,14 +161,13 @@ const chapters = [
 ───────────────────────────────────────────── */
 const StorySection = () => {
   return (
-    <section id="story" className="bg-background py-16 md:py-32 overflow-hidden">
+    <section id="story" className="bg-background py-12 md:py-20 overflow-hidden">
       <div className="mx-auto max-w-7xl px-8">
         <ScrollReveal>
-          <div className="flex flex-col items-center mb-24 text-center">
-            <p className="text-xs uppercase tracking-[0.5em] text-gold font-bold mb-6">The Narrative of Change</p>
-            <h2 className="font-display text-5xl font-medium tracking-tight md:text-8xl text-primary leading-[1.1]">
-              Impact <br />
-              <span className="italic text-gold">Beyond Measure</span>
+          <div className="flex flex-col items-center mb-12 text-center">
+            <p className="text-xs uppercase tracking-[0.5em] text-gold font-bold mb-4">The Narrative of Change</p>
+            <h2 className="font-display text-3xl font-medium tracking-tight md:text-5xl text-primary leading-[1.1]">
+              Impact <span className="italic text-gold">Beyond Measure</span>
             </h2>
           </div>
         </ScrollReveal>
@@ -189,12 +184,12 @@ const StorySection = () => {
                     labelIcon={chapter.sliderIcon}
                   />
                 ) : (
-                  <div className="aspect-[4/5] overflow-hidden bg-muted transition-all duration-1000 shadow-2xl relative">
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-1000 z-10" />
+                  <div className="rounded-2xl overflow-hidden bg-muted shadow-xl relative max-w-sm mx-auto aspect-[3/4]">
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-1000 z-10 rounded-2xl" />
                     <img
                       src={chapter.image!}
                       alt={chapter.title}
-                      className="h-full w-full object-cover grayscale-[30%] transition-all duration-[2s] group-hover:scale-110 group-hover:grayscale-0"
+                      className="w-full h-full object-cover grayscale-[20%] transition-all duration-[2s] group-hover:grayscale-0"
                     />
                   </div>
                 )}

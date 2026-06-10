@@ -1,25 +1,38 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { NavLink, useLocation } from "react-router-dom";
 
 const links = [
-  { label: "Story", href: "#story" },
-  { label: "Impact", href: "#impact" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Real Work", href: "#real-impact" },
-  { label: "Donate", href: "#donate" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home",     to: "/" },
+  { label: "About",    to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Gallery",  to: "/gallery" },
+  { label: "Donate",   to: "/donate" },
+  { label: "Contact",  to: "/contact" },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  // On the home page, the hero is dark so we want light text when not scrolled
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setOpen(false);
+    window.scrollTo({ top: 0 });
+  }, [location.pathname]);
+
+  const lightText = isHome && !scrolled;
 
   return (
     <>
@@ -34,34 +47,40 @@ const Navbar = () => {
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-6">
-          <a 
-            href="#" 
+          <NavLink
+            to="/"
             className={`font-display text-2xl tracking-tight transition-all duration-700 ${
-              scrolled ? 'text-primary' : 'text-primary-foreground'
+              lightText ? "text-primary-foreground" : "text-primary"
             }`}
           >
             Iraithuligal <span className="text-gold italic">Iyakkam</span>
-          </a>
+          </NavLink>
 
           {/* Desktop */}
           <div className="hidden items-center gap-10 md:flex">
             {links.map((l) => (
-              <a
+              <NavLink
                 key={l.label}
-                href={l.href}
-                className={`text-[11px] font-bold uppercase tracking-[0.3em] transition-colors hover:text-gold ${
-                  scrolled ? 'text-foreground/80' : 'text-primary-foreground/80'
-                }`}
+                to={l.to}
+                className={({ isActive }) =>
+                  `text-[11px] font-bold uppercase tracking-[0.3em] transition-colors hover:text-gold ${
+                    isActive
+                      ? "text-gold"
+                      : lightText
+                      ? "text-primary-foreground/80"
+                      : "text-foreground/80"
+                  }`
+                }
               >
                 {l.label}
-              </a>
+              </NavLink>
             ))}
           </div>
 
           {/* Mobile toggle */}
           <button
             onClick={() => setOpen(!open)}
-            className={`md:hidden ${scrolled ? 'text-foreground' : 'text-primary-foreground'}`}
+            className={`md:hidden ${lightText ? "text-primary-foreground" : "text-foreground"}`}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -78,14 +97,18 @@ const Navbar = () => {
             exit={{ opacity: 0 }}
           >
             {links.map((l) => (
-              <a
+              <NavLink
                 key={l.label}
-                href={l.href}
+                to={l.to}
                 onClick={() => setOpen(false)}
-                className="font-display text-2xl text-foreground transition-colors hover:text-gold"
+                className={({ isActive }) =>
+                  `font-display text-2xl transition-colors hover:text-gold ${
+                    isActive ? "text-gold" : "text-foreground"
+                  }`
+                }
               >
                 {l.label}
-              </a>
+              </NavLink>
             ))}
           </motion.div>
         )}
