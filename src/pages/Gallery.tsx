@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import GallerySection from "@/components/GallerySection";
 import RealImpact from "@/components/RealImpact";
 import PageHero from "@/components/PageHero";
-import galleryHero from "@/assets/impact_joyful_tamil_children.png";
+import galleryHero from "@/assets/gallery-hero.png";
 
 const Gallery = () => {
   return (

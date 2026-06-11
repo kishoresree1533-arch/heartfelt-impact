@@ -6,21 +6,23 @@ interface PageHeroProps {
   highlight?: string;
   subtitle?: string;
   image: string;
+  objectPosition?: string;
 }
 
-const PageHero = ({ label, title, highlight, subtitle, image }: PageHeroProps) => {
+const PageHero = ({ label, title, highlight, subtitle, image, objectPosition = "center" }: PageHeroProps) => {
   return (
-    <section className="relative h-[55vh] min-h-[380px] w-full overflow-hidden">
+    <section className="relative h-screen w-full overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-primary z-0">
         <img
           src={image}
           alt={title}
-          className="h-full w-full object-cover animate-slow-zoom"
+          className="h-full w-full object-cover"
+          style={{ objectPosition }}
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-black/55 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-10" />
+        <div className="absolute inset-0 bg-black/25 z-10" />
       </div>
 
       {/* Content */}
@@ -35,7 +37,7 @@ const PageHero = ({ label, title, highlight, subtitle, image }: PageHeroProps) =
         </motion.p>
 
         <motion.h1
-          className="mb-4 max-w-4xl text-4xl font-display font-medium leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl"
+          className="mb-4 max-w-4xl text-4xl font-display font-medium leading-[1.1] tracking-tight text-white sm:text-6xl md:text-7xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}

@@ -4,7 +4,7 @@ import ServicesSection from "@/components/ServicesSection";
 import ImpactSection from "@/components/ImpactSection";
 import RealImpact from "@/components/RealImpact";
 import PageHero from "@/components/PageHero";
-import servicesHero from "@/assets/services_causes_banner.png";
+import servicesHero from "@/assets/services-hero.png";
 
 const Services = () => {
   return (

@@ -1,99 +1,173 @@
-import { ShieldCheck, Info, Heart } from "lucide-react";
+import { ShieldCheck, Zap, Heart, Copy, CheckCheck } from "lucide-react";
+import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
+import kvbQR from "@/assets/image.png";
+
+const bankDetails = [
+  { label: "Account Name",   value: "IRAI THULIGAL IYAKKAM" },
+  { label: "Account Number", value: "1198010000000591" },
+  { label: "IFSC Code",      value: "KVBL0001198" },
+  { label: "Branch",         value: "Tiruvannamalai" },
+  { label: "Bank Name",      value: "Karur Vysya Bank" },
+];
+
+const trustBadges = [
+  { icon: ShieldCheck, text: "100% Transparent" },
+  { icon: Zap,         text: "Instant Settlement" },
+  { icon: Heart,       text: "Direct Field Impact" },
+];
 
 const DonationSection = () => {
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const handleCopy = (value: string, key: string) => {
+    navigator.clipboard.writeText(value);
+    setCopied(key);
+    setTimeout(() => setCopied(null), 2000);
+  };
+
   return (
-    <section id="donate" className="relative bg-[#0A0A0A] py-16 md:py-32 overflow-hidden">
-      {/* Background elegant glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 blur-[150px] rounded-full pointer-events-none" />
-      
-      <div className="relative z-10 mx-auto max-w-7xl px-8 font-display">
+    <section id="donate" className="bg-white py-16 md:py-24 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-8">
+
+        {/* ── Header ── */}
         <ScrollReveal>
-          <div className="flex flex-col items-center mb-16">
-            <p className="text-[10px] uppercase tracking-[0.6em] text-gold-light mb-6 opacity-60">Support Our Cause</p>
-            <h2 className="text-center text-5xl font-medium tracking-tighter md:text-8xl text-white leading-[0.95]">
-              Today, You Can <br />
-              <span className="italic text-gold italic">Rewrite a Life</span>
+          <div className="text-center mb-14">
+            <p className="text-[10px] uppercase tracking-[0.6em] text-gold font-bold mb-4">
+              Support Our Cause
+            </p>
+            <h2 className="font-display text-4xl font-medium text-primary md:text-6xl leading-tight">
+              Today, You Can <span className="italic text-gold">Rewrite a Life</span>
             </h2>
+            <div className="mx-auto mt-6 h-px w-14 bg-gold/40" />
+            <p className="mt-6 text-base font-light text-muted-foreground max-w-lg mx-auto">
+              Every contribution — big or small — reaches real people in real need.
+              Choose how you'd like to give.
+            </p>
           </div>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.2}>
-          <div className="mx-auto max-w-5xl overflow-hidden border border-white/5 bg-white/[0.01] backdrop-blur-3xl shadow-[0_40px_100px_rgba(0,0,0,0.6)] rounded-sm">
-            <div className="grid md:grid-cols-2 divide-x divide-white/5">
-              {/* Bank Details Chapter */}
-              <div className="p-12 lg:p-24 transition-all duration-700 hover:bg-white/[0.02]">
-                <div className="flex items-center gap-4 mb-16">
-                   <div className="h-px w-8 bg-gold/30" />
-                   <h3 className="text-xs uppercase tracking-[0.4em] text-gold-light font-bold">Bank Transfer</h3>
+        {/* ── Two cards ── */}
+        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+
+          {/* Bank Transfer card */}
+          <ScrollReveal direction="left" delay={0.1}>
+            <div className="flex flex-col h-full rounded-2xl border border-border bg-[#faf8f5] shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden">
+              {/* Card header */}
+              <div className="flex items-center gap-3 px-8 py-6 border-b border-border bg-white">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/10 border border-gold/20">
+                  <ShieldCheck className="h-4 w-4 text-gold" />
                 </div>
-                <div className="space-y-12">
-                  {[
-                    ["Account Name", "Iraithuligal Iyakkam Trust"],
-                    ["Account Number", "9876 5432 1012 3456"],
-                    ["IFSC Code", "IDIB000M123"],
-                    ["Bank Name", "Indian Bank (T.Nagar Branch)"],
-                  ].map(([label, value]) => (
-                    <div key={label} className="group border-b border-white/5 pb-6 transition-all duration-700 hover:border-gold/30">
-                      <p className="text-[9px] uppercase tracking-[0.5em] text-white/20 mb-3 group-hover:text-gold-light transition-colors duration-500">{label}</p>
-                      <p className="text-xl md:text-2xl text-white/90 tracking-tight font-light transition-all duration-500 group-hover:translate-x-1">{value}</p>
-                    </div>
-                  ))}
+                <div>
+                  <p className="text-[9px] uppercase tracking-[0.45em] text-gold font-bold">Option 01</p>
+                  <h3 className="font-display text-lg text-primary">Bank Transfer</h3>
                 </div>
               </div>
 
-              {/* Direct UPI Chapter */}
-              <div className="p-12 lg:p-24 flex flex-col items-center justify-center text-center transition-all duration-700 hover:bg-white/[0.02]">
-                <div className="flex items-center gap-4 mb-16">
-                   <div className="h-px w-8 bg-gold/30" />
-                   <h3 className="text-xs uppercase tracking-[0.4em] text-gold-light font-bold">Direct UPI</h3>
-                </div>
-                
-                <div className="group relative p-10 bg-white shadow-2xl transition-all duration-700 hover:shadow-[0_0_80px_rgba(212,175,55,0.2)] rounded-sm">
-                  <div className="grid grid-cols-10 gap-1.5 grayscale transition-all duration-700 group-hover:grayscale-0">
-                    {Array.from({ length: 100 }).map((_, i) => (
-                      <div key={i} className={`h-3 w-3 ${Math.random() > 0.4 ? 'bg-black' : 'bg-transparent'}`} />
-                    ))}
+              {/* Details */}
+              <div className="flex flex-col flex-1 px-8 py-7 gap-5">
+                {bankDetails.map(({ label, value }) => (
+                  <div
+                    key={label}
+                    className="group flex items-center justify-between pb-5 border-b border-border last:border-0 last:pb-0"
+                  >
+                    <div>
+                      <p className="text-[9px] uppercase tracking-[0.4em] text-muted-foreground/60 mb-1">{label}</p>
+                      <p className="text-base font-medium text-primary">{value}</p>
+                    </div>
+                    <button
+                      onClick={() => handleCopy(value, label)}
+                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex h-8 w-8 items-center justify-center rounded-lg border border-gold/30 bg-white hover:bg-gold/10 text-gold"
+                      title="Copy"
+                    >
+                      {copied === label
+                        ? <CheckCheck className="h-3.5 w-3.5" />
+                        : <Copy className="h-3.5 w-3.5" />
+                      }
+                    </button>
                   </div>
-                  <div className="mt-8 border-t border-black/5 pt-6">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black/40">Scan to Support</p>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* UPI card */}
+          <ScrollReveal direction="right" delay={0.15}>
+            <div className="flex flex-col h-full rounded-2xl border border-border bg-[#faf8f5] shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden">
+              {/* Card header */}
+              <div className="flex items-center gap-3 px-8 py-6 border-b border-border bg-white">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/10 border border-gold/20">
+                  <Zap className="h-4 w-4 text-gold" />
+                </div>
+                <div>
+                  <p className="text-[9px] uppercase tracking-[0.45em] text-gold font-bold">Option 02</p>
+                  <h3 className="font-display text-lg text-primary">Scan & Pay — UPI</h3>
+                </div>
+              </div>
+
+              {/* QR + UPI ID */}
+              <div className="flex flex-col flex-1 items-center justify-center px-8 py-10 gap-8">
+                {/* QR Image */}
+                <div className="group relative p-5 bg-white rounded-2xl shadow-md border border-border hover:shadow-xl hover:border-gold/30 transition-all duration-500 w-full max-w-[340px]">
+                  {/* Replace src below with: import kvbQR from "@/assets/kvb-qr.jpeg" once saved */}
+                  <div className="flex items-center justify-center aspect-square bg-white rounded-xl overflow-hidden">
+                    <img
+                      src={kvbQR}
+                      alt="KVB UPI QR Code — IRAI THULIGAL IYAKKAM"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-border text-center">
+                    <p className="text-[8px] uppercase tracking-[0.4em] text-muted-foreground/50 font-bold">
+                      Scan with any UPI App
+                    </p>
+                    <p className="text-[9px] font-bold text-primary/70 mt-1">BHIM · GPay · PhonePe · Paytm</p>
                   </div>
                 </div>
 
-                <div className="mt-12">
-                  <p className="text-2xl md:text-3xl italic tracking-tighter text-gold-light transition-all duration-[1s] hover:scale-105 cursor-pointer">
-                    heartfeltimpact@upi
+                {/* UPI ID */}
+                <div className="text-center">
+                  <p className="text-[9px] uppercase tracking-[0.4em] text-muted-foreground/50 mb-2">UPI ID</p>
+                  <p className="font-display text-base font-medium text-primary mb-1">
+                    Mswipe.1430042826001727@mswipesbm
                   </p>
-                  <p className="mt-4 text-[9px] uppercase tracking-[0.4em] text-white/20">Instant Settlement</p>
+                  <p className="text-[8px] text-muted-foreground/40 mb-3">IRAI THULIGAL IYAKKAM</p>
+                  <button
+                    onClick={() => handleCopy("Mswipe.1430042826001727@mswipesbm", "upi")}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/30 bg-amber-50 text-[9px] uppercase tracking-[0.4em] text-gold font-bold hover:bg-gold/10 transition-all duration-300"
+                  >
+                    {copied === "upi" ? <CheckCheck className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
+                    {copied === "upi" ? "Copied!" : "Copy UPI ID"}
+                  </button>
                 </div>
               </div>
             </div>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
 
-        {/* Global Trust Ribbon */}
-        <ScrollReveal delay={0.3} className="mt-24 flex flex-wrap items-center justify-center gap-16 md:gap-24 opacity-40 hover:opacity-100 transition-opacity duration-1000">
-          <div className="flex items-center gap-4">
-             <ShieldCheck className="h-4 w-4 text-gold-light" />
-             <p className="text-[9px] uppercase tracking-[0.4em] text-white font-medium">100% Transparency</p>
-          </div>
-          <div className="flex items-center gap-4">
-             <Info className="h-4 w-4 text-gold-light" />
-             <p className="text-[9px] uppercase tracking-[0.4em] text-white font-medium">Secure Portal</p>
-          </div>
-          <div className="flex items-center gap-4">
-             <Heart className="h-4 w-4 text-gold-light" />
-             <p className="text-[9px] uppercase tracking-[0.4em] text-white font-medium">Direct Field Impact</p>
-          </div>
-        </ScrollReveal>
-
-        <div className="mt-20 flex flex-col items-center">
-          <button className="group relative overflow-hidden bg-gold px-24 py-7 font-bold uppercase tracking-[0.5em] text-[10px] text-black transition-all duration-700 hover:scale-105 hover:shadow-[0_20px_60px_rgba(212,175,55,0.3)] rounded-full">
-            <span className="relative z-10 transition-colors duration-700 group-hover:text-black">Donate Now</span>
-            <div className="absolute inset-0 -translate-x-full bg-white transition-transform duration-700 group-hover:translate-x-0" />
-          </button>
-          <p className="mt-10 text-[10px] font-light tracking-[0.4em] text-white/20 uppercase italic">"Every heart matters"</p>
         </div>
+
+        {/* ── Trust badges ── */}
+        <ScrollReveal delay={0.2}>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            {trustBadges.map(({ icon: Icon, text }) => (
+              <div
+                key={text}
+                className="flex items-center gap-3 px-5 py-3 rounded-full border border-gold/25 bg-amber-50 text-sm font-light text-foreground/70"
+              >
+                <Icon className="h-4 w-4 text-gold shrink-0" />
+                <span className="text-[10px] uppercase tracking-[0.35em] font-bold text-gold">{text}</span>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+
+        {/* ── Quote ── */}
+        <ScrollReveal delay={0.25}>
+          <p className="mt-10 text-center font-display text-lg italic text-muted-foreground/50">
+            "Every heart matters."
+          </p>
+        </ScrollReveal>
+
       </div>
     </section>
   );

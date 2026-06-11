@@ -1,9 +1,11 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import IntroSection from "@/components/IntroSection";
 import ImpactSection from "@/components/ImpactSection";
 import ServicesSection from "@/components/ServicesSection";
 import StorySection from "@/components/StorySection";
 import FounderSection from "@/components/FounderSection";
+import AwardsSection from "@/components/AwardsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 
@@ -22,6 +24,9 @@ const Index = () => {
       {/* Hero */}
       <HeroSection />
 
+      {/* Introduction — origin story */}
+      <IntroSection />
+
       {/* Our Causes — from Services page */}
       <ServicesSection />
       <ImpactSection />
@@ -29,6 +34,9 @@ const Index = () => {
       {/* Our Story & Founder — from About page */}
       <StorySection />
       <FounderSection />
+
+      {/* Awards & Recognition */}
+      <AwardsSection />
 
       {/* Promise + Donation categories */}
       <PromiseSection />

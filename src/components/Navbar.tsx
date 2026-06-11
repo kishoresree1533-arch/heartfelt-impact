@@ -37,9 +37,9 @@ const Navbar = () => {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-1000 ${
-          scrolled
-            ? "bg-background/80 border-b border-border shadow-[0_4px_30px_rgba(0,0,0,0.03)] backdrop-blur-xl"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled || !isHome
+            ? "bg-background/95 border-b border-border shadow-[0_4px_30px_rgba(0,0,0,0.06)] backdrop-blur-xl"
             : "bg-transparent"
         }`}
         initial={{ y: -100 }}

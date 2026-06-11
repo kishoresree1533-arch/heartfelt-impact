@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import StorySection from "@/components/StorySection";
 import FounderSection from "@/components/FounderSection";
 import PageHero from "@/components/PageHero";
-import aboutHero from "@/assets/services_tamil_volunteers.png";
+import aboutHero from "@/assets/about-hero.png";
 
 const About = () => {
   return (

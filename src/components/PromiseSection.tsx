@@ -1,4 +1,4 @@
-import { Shield, Sprout, Heart, ArrowRight } from "lucide-react";
+import { Shield, Sprout, Heart } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 const promises = [
@@ -117,14 +117,6 @@ const PromiseSection = () => {
                   <p className="text-sm font-light leading-relaxed text-muted-foreground flex-1">
                     {p.desc}
                   </p>
-
-                  {/* Bottom arrow link */}
-                  <div className="mt-8 flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-                    <span className={`text-xs font-bold uppercase tracking-[0.35em] ${p.iconColor}`}>
-                      Learn More
-                    </span>
-                    <ArrowRight className={`h-3.5 w-3.5 ${p.iconColor}`} />
-                  </div>
                 </div>
 
                 {/* Hover glow bottom */}
