@@ -378,6 +378,10 @@ const Membership = () => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
+
+    const isConfirmed = window.confirm("Are you sure you want to submit your membership registration?");
+    if (!isConfirmed) return;
+
     setLoading(true);
 
     const fd = new FormData();

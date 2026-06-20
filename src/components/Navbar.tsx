@@ -31,10 +31,8 @@ const Navbar = () => {
     window.scrollTo({ top: 0 });
   }, [location.pathname]);
 
-  // On home hero (dark bg) + not scrolled → white text; otherwise dark
-  const lightText = isHome && !scrolled;
-  // Pill is "filled" once we scroll or on inner pages
-  const filled = scrolled || !isHome;
+  // On premium white theme navbar, we want dark/slate text for contrast
+  const lightText = false;
 
   return (
     <>
@@ -50,9 +48,9 @@ const Navbar = () => {
             w-full max-w-6xl flex items-center justify-between
             px-6 py-3 rounded-full
             transition-all duration-500
-            ${filled
-              ? "bg-[hsl(40,33%,97%)]/95 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.10)] border border-[hsl(40,15%,88%)]"
-              : "bg-black/20 backdrop-blur-md border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.15)]"
+            ${scrolled
+              ? "bg-white/95 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.06)] border border-slate-200/50"
+              : "bg-white/80 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-white/60"
             }
           `}
           layout
@@ -61,9 +59,7 @@ const Navbar = () => {
           {/* Logo */}
           <NavLink
             to="/"
-            className={`font-display text-xl tracking-tight transition-colors duration-500 shrink-0 mr-6 ${
-              lightText ? "text-white" : "text-[hsl(220,25%,8%)]"
-            }`}
+            className="font-display text-xl tracking-tight transition-colors duration-500 shrink-0 mr-6 text-slate-900"
           >
             Iraithuligal{" "}
             <span className="text-gold italic">Iyakkam</span>
@@ -79,9 +75,7 @@ const Navbar = () => {
                   `relative text-[10px] font-bold uppercase tracking-[0.3em] transition-colors duration-300 group whitespace-nowrap ${
                     isActive
                       ? "text-gold"
-                      : lightText
-                      ? "text-white/85 hover:text-white"
-                      : "text-[hsl(220,25%,8%)]/75 hover:text-[hsl(220,25%,8%)]"
+                      : "text-slate-800/80 hover:text-slate-900"
                   }`
                 }
               >
@@ -105,16 +99,13 @@ const Navbar = () => {
             {/* Desktop donate button */}
             <NavLink
               to="/donate"
-              className={`
+              className="
                 hidden md:inline-flex items-center gap-2
                 text-[9px] font-bold uppercase tracking-[0.35em]
                 px-5 py-2.5 rounded-full
                 transition-all duration-500
-                ${filled
-                  ? "bg-[hsl(220,25%,8%)] text-[hsl(40,33%,97%)] hover:bg-gold hover:text-[hsl(220,25%,8%)] shadow-sm"
-                  : "bg-white/15 text-white border border-white/30 hover:bg-gold hover:text-[hsl(220,25%,8%)] hover:border-gold"
-                }
-              `}
+                bg-slate-950 text-white hover:bg-gold hover:text-slate-950 shadow-sm border border-slate-950/10
+              "
             >
               Donate
             </NavLink>
@@ -122,11 +113,7 @@ const Navbar = () => {
             {/* Mobile hamburger */}
             <button
               onClick={() => setOpen(!open)}
-              className={`md:hidden flex items-center justify-center w-9 h-9 rounded-full transition-colors duration-300 ${
-                filled
-                  ? "bg-[hsl(40,15%,88%)] text-[hsl(220,25%,8%)]"
-                  : "bg-white/15 text-white"
-              }`}
+              className="md:hidden flex items-center justify-center w-9 h-9 rounded-full transition-colors duration-300 bg-slate-100/80 text-slate-900 border border-slate-200/50"
               aria-label="Toggle menu"
             >
               {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}

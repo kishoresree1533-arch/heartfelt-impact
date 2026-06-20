@@ -1207,7 +1207,7 @@ if ($tab === 'messages') {
                                                     </button>
                                                 </form>
                                                 <!-- IGNORE / DELETE -->
-                                                <form method="POST" style="margin:0;" onsubmit="return confirm('Ignore and remove this message?');">
+                                                <form method="POST" style="margin:0;" onsubmit="event.preventDefault(); showConfirmModal('Ignore and remove this message?', this);">
                                                     <input type="hidden" name="action" value="ignore_message">
                                                     <input type="hidden" name="id" value="<?php echo $msg['id']; ?>">
                                                     <button type="submit" class="btn btn-outline-danger btn-sm" style="width:100%;">
@@ -1260,7 +1260,7 @@ if ($tab === 'messages') {
                                         </span>
                                     </td>
                                     <td>
-                                        <form method="POST" onsubmit="return confirm('Delete this approved message?');">
+                                        <form method="POST" onsubmit="event.preventDefault(); showConfirmModal('Delete this approved message?', this);">
                                             <input type="hidden" name="action" value="delete_message">
                                             <input type="hidden" name="id" value="<?php echo $msg['id']; ?>">
                                             <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
@@ -1437,7 +1437,7 @@ if ($tab === 'messages') {
                                     <div class="gallery-item-actions">
                                         <button class="btn btn-gold btn-sm" style="flex:1;" onclick="openEditGalleryModal(<?php echo htmlspecialchars(json_encode($img)); ?>)">Edit</button>
                                         
-                                        <form method="POST" style="flex:1;" onsubmit="return confirm('Delete this image?');">
+                                        <form method="POST" style="flex:1;" onsubmit="event.preventDefault(); showConfirmModal('Delete this image?', this);">
                                             <input type="hidden" name="action" value="delete_gallery">
                                             <input type="hidden" name="id" value="<?php echo $img['id']; ?>">
                                             <button type="submit" class="btn btn-outline-danger btn-sm" style="width:100%;">Delete</button>
@@ -1545,7 +1545,7 @@ if ($tab === 'messages') {
                                     <td style="min-width:180px;">
                                         <div style="display:flex; gap:0.5rem;">
                                             <button class="btn btn-gold btn-sm" onclick="openEditTestimonialModal(<?php echo htmlspecialchars(json_encode($row)); ?>)">Edit</button>
-                                            <form method="POST" onsubmit="return confirm('Delete this testimonial?');">
+                                            <form method="POST" onsubmit="event.preventDefault(); showConfirmModal('Delete this testimonial?', this);">
                                                 <input type="hidden" name="action" value="delete_testimonial">
                                                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                                                 <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
@@ -1673,7 +1673,7 @@ if ($tab === 'messages') {
                                     <td>
                                         <div style="display:flex; gap:0.5rem;">
                                             <button class="btn btn-gold btn-sm" onclick="openEditAwardModal(<?php echo htmlspecialchars(json_encode($row)); ?>)">Edit</button>
-                                            <form method="POST" onsubmit="return confirm('Delete this award?');">
+                                            <form method="POST" onsubmit="event.preventDefault(); showConfirmModal('Delete this award?', this);">
                                                 <input type="hidden" name="action" value="delete_award">
                                                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                                                 <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
@@ -1838,33 +1838,33 @@ if ($tab === 'messages') {
                                 <td>
                                     <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
                                         <?php if ($m['status'] === 'pending'): ?>
-                                        <form method="POST" style="display:inline;">
+                                        <form method="POST" style="display:inline;" onsubmit="event.preventDefault(); showConfirmModal('Approve this membership?', this);">
                                             <input type="hidden" name="action" value="approve_membership">
                                             <input type="hidden" name="id" value="<?php echo $m['id']; ?>">
-                                            <button type="submit" class="btn btn-sm" style="background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;" onclick="return confirm('Approve this membership?')">✓ Approve</button>
+                                            <button type="submit" class="btn btn-sm" style="background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;">✓ Approve</button>
                                         </form>
-                                        <form method="POST" style="display:inline;">
+                                        <form method="POST" style="display:inline;" onsubmit="event.preventDefault(); showConfirmModal('Reject this membership?', this);">
                                             <input type="hidden" name="action" value="reject_membership">
                                             <input type="hidden" name="id" value="<?php echo $m['id']; ?>">
-                                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Reject this membership?')">✗ Reject</button>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">✗ Reject</button>
                                         </form>
                                         <?php elseif ($m['status'] === 'approved'): ?>
-                                        <form method="POST" style="display:inline;">
+                                        <form method="POST" style="display:inline;" onsubmit="event.preventDefault(); showConfirmModal('Revoke this membership?', this);">
                                             <input type="hidden" name="action" value="reject_membership">
                                             <input type="hidden" name="id" value="<?php echo $m['id']; ?>">
-                                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Revoke this membership?')">Revoke</button>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">Revoke</button>
                                         </form>
                                         <?php elseif ($m['status'] === 'rejected'): ?>
-                                        <form method="POST" style="display:inline;">
+                                        <form method="POST" style="display:inline;" onsubmit="event.preventDefault(); showConfirmModal('Re-approve this membership?', this);">
                                             <input type="hidden" name="action" value="approve_membership">
                                             <input type="hidden" name="id" value="<?php echo $m['id']; ?>">
                                             <button type="submit" class="btn btn-sm" style="background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;">Re-approve</button>
                                         </form>
                                         <?php endif; ?>
-                                        <form method="POST" style="display:inline;">
+                                        <form method="POST" style="display:inline;" onsubmit="event.preventDefault(); showConfirmModal('Permanently delete this record?', this);">
                                             <input type="hidden" name="action" value="delete_membership">
                                             <input type="hidden" name="id" value="<?php echo $m['id']; ?>">
-                                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Permanently delete this record?')">Delete</button>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                         </form>
                                         <?php if ($m['motivation']): ?>
                                         <button class="btn btn-sm" style="background:var(--gold-light);color:var(--gold-color);border:1px solid var(--gold-color);"
@@ -1891,13 +1891,53 @@ if ($tab === 'messages') {
             <?php endif; ?>
     </div>
 
+    <!-- Custom Confirmation Modal -->
+    <div id="confirmModal" class="modal" style="display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.4); backdrop-filter:blur(5px); z-index:9999; position:fixed; top:0; left:0; right:0; bottom:0;">
+        <div class="modal-content" style="max-width:380px; text-align:center; padding:2rem; border-radius:20px; border:1px solid #f0ebe0; background:#fff; box-shadow:0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
+            <div style="width:54px; height:54px; border-radius:50%; background:#fef3c7; display:flex; align-items:center; justify-content:center; margin:0 auto 1.2rem; border:1px solid #fde68a;">
+                <svg style="width:26px; height:26px; color:#d97706;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 9v4"></path>
+                    <path d="M12 17h.01"></path>
+                </svg>
+            </div>
+            <h3 style="font-family:'Playfair Display',serif; font-size:1.35rem; color:#1e293b; margin-bottom:0.6rem; font-weight:700;">Confirm Action</h3>
+            <p style="color:#64748b; font-size:0.85rem; margin-bottom:1.8rem; line-height:1.5;" id="confirmMessage">Are you sure you want to proceed?</p>
+            <div style="display:flex; gap:0.75rem; justify-content:center;">
+                <button id="confirmCancelBtn" class="btn btn-outline-danger" style="flex:1; padding:0.6rem 1rem; font-size:0.8rem; font-weight:700; border-radius:10px;" type="button">Cancel</button>
+                <button id="confirmOkBtn" class="btn" style="flex:1; background:var(--gold-color); color:var(--primary-color); border:1px solid var(--gold-color); padding:0.6rem 1rem; font-size:0.8rem; font-weight:700; border-radius:10px;" type="button">Confirm</button>
+            </div>
+        </div>
+    </div>
+
     <!-- General close modals on click outside -->
     <script>
+        let activeFormToSubmit = null;
+
+        function showConfirmModal(message, formElement) {
+            activeFormToSubmit = formElement;
+            document.getElementById('confirmMessage').innerText = message;
+            document.getElementById('confirmModal').style.display = 'flex';
+        }
+
+        document.getElementById('confirmCancelBtn').onclick = function() {
+            document.getElementById('confirmModal').style.display = 'none';
+            activeFormToSubmit = null;
+        };
+
+        document.getElementById('confirmOkBtn').onclick = function() {
+            if (activeFormToSubmit) {
+                activeFormToSubmit.submit();
+            }
+            document.getElementById('confirmModal').style.display = 'none';
+        };
+
         window.onclick = function(event) {
             var donationModal = document.getElementById('editDonationModal');
             var galleryModal = document.getElementById('editGalleryModal');
             var testimonialModal = document.getElementById('editTestimonialModal');
             var awardModal = document.getElementById('editAwardModal');
+            var confirmModal = document.getElementById('confirmModal');
             
             if (event.target == donationModal) {
                 donationModal.style.display = "none";
@@ -1910,6 +1950,10 @@ if ($tab === 'messages') {
             }
             if (event.target == awardModal) {
                 awardModal.style.display = "none";
+            }
+            if (event.target == confirmModal) {
+                confirmModal.style.display = "none";
+                activeFormToSubmit = null;
             }
         }
     </script>
