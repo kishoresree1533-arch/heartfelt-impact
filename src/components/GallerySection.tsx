@@ -12,6 +12,12 @@ import img2 from "@/assets/fwd/DSC gallery images/IMG_20250929_233504.jpg.jpeg";
 import img3 from "@/assets/fwd/DSC gallery images/IMG_20250929_233629.jpg.jpeg";
 import img4 from "@/assets/fwd/DSC gallery images/IMG_20250929_233642.jpg.jpeg";
 import img5 from "@/assets/fwd/DSC gallery images/IMG_20250929_233803.jpg.jpeg";
+import gal1 from "@/assets/gallery image/IMG_20260326_124213.jpg - Copy.jpeg";
+import gal2 from "@/assets/gallery image/IMG_20260326_124227.jpg.jpeg";
+import gal3 from "@/assets/gallery image/IMG_20260326_124237.jpg.jpeg";
+import gal4 from "@/assets/gallery image/IMG_20260326_124248.jpg.jpeg";
+import donorDay1 from "@/assets/gallery image/world_blood_donor_day_1.jpg";
+import donorDay2 from "@/assets/gallery image/world_blood_donor_day_2.jpg";
 
 const photos = [
   { src: dsc1, span: "row-span-2", delay: 0    },
@@ -23,6 +29,12 @@ const photos = [
   { src: img3, span: "",           delay: 0.14  },
   { src: img4, span: "",           delay: 0.18  },
   { src: img5, span: "",           delay: 0.22  },
+  { src: gal1, span: "row-span-2", delay: 0.10  },
+  { src: gal2, span: "",           delay: 0.24  },
+  { src: gal3, span: "",           delay: 0.26  },
+  { src: gal4, span: "",           delay: 0.28  },
+  { src: donorDay1, span: "row-span-2", delay: 0.15 },
+  { src: donorDay2, span: "",           delay: 0.30 },
 ];
 
 const GallerySection = () => {
@@ -41,7 +53,7 @@ const GallerySection = () => {
               Moments of <span className="italic text-gold">Transformation</span>
             </h2>
             <div className="mt-6 h-px w-14 bg-gold/40" />
-            <p className="mt-6 text-base font-light text-muted-foreground max-w-lg">
+            <p className="mt-6 text-base font-normal text-muted-foreground max-w-lg">
               Every photograph is a testament to resilience, compassion, and the quiet dignity of lives being changed — one moment at a time.
             </p>
           </div>
@@ -83,13 +95,27 @@ const GallerySection = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <img src={photos[lightbox].src} alt="" className="w-full h-auto max-h-[85vh] object-contain rounded-2xl shadow-2xl" />
+
+              {/* Gold corner accents */}
               <div className="absolute top-3 left-3 h-px w-10 bg-gold" /><div className="absolute top-3 left-3 w-px h-10 bg-gold" />
               <div className="absolute bottom-3 right-3 h-px w-10 bg-gold" /><div className="absolute bottom-3 right-3 w-px h-10 bg-gold" />
-              <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold tracking-widest px-3 py-1 rounded-full border border-white/20">
+
+              {/* Counter */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold tracking-widest px-3 py-1 rounded-full border border-white/20">
                 {lightbox + 1} / {total}
               </div>
+
+              {/* Close button — inside the image frame, top-right */}
+              <button
+                onClick={() => setLightbox(null)}
+                className="absolute top-3 right-3 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm border border-white/30 text-white hover:bg-gold hover:border-gold transition-all duration-300 z-20"
+                aria-label="Close"
+              >
+                <X className="h-5 w-5" />
+              </button>
             </motion.div>
-            <button onClick={() => setLightbox(null)} className="absolute top-5 right-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-gold hover:border-gold transition-all duration-300 z-10"><X className="h-5 w-5" /></button>
+
+            {/* Prev / Next */}
             <button onClick={(e) => { e.stopPropagation(); prev(); }} className="absolute left-4 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-gold hover:border-gold transition-all duration-300"><ChevronLeft className="h-6 w-6" /></button>
             <button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-4 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-gold hover:border-gold transition-all duration-300"><ChevronRight className="h-6 w-6" /></button>
           </motion.div>

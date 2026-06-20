@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GallerySection from "@/components/GallerySection";
-import RealImpact from "@/components/RealImpact";
 import PageHero from "@/components/PageHero";
 import galleryHero from "@/assets/gallery-hero.png";
 
@@ -17,7 +16,6 @@ const Gallery = () => {
         image={galleryHero}
       />
       <GallerySection />
-      <RealImpact />
       <Footer />
     </div>
   );

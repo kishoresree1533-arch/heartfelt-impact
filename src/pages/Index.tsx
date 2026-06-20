@@ -15,6 +15,7 @@ import DonationCategories from "@/components/DonationCategories";
 import HowItWorks from "@/components/HowItWorks";
 import TrustSection from "@/components/TrustSection";
 import VolunteerCTA from "@/components/VolunteerCTA";
+import MembershipSection from "@/components/MembershipSection";
 
 const Index = () => {
   return (
@@ -50,6 +51,9 @@ const Index = () => {
 
       {/* Trust */}
       <TrustSection />
+
+      {/* Membership CTA */}
+      <MembershipSection />
 
       {/* Volunteer CTA */}
       <VolunteerCTA />

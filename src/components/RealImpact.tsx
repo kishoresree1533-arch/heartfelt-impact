@@ -37,7 +37,7 @@ const RealImpact = () => {
           <h2 className="mt-4 text-center font-display text-4xl font-medium tracking-tight md:text-6xl text-primary">
             Our Work in the <span className="italic text-gold">Field</span>
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-center text-base font-light text-muted-foreground">
+          <p className="mx-auto mt-6 max-w-2xl text-center text-base font-normal text-muted-foreground">
             Transparency is at the heart of our mission. Explore authentic moments of change we are creating across Tamil Nadu.
           </p>
         </ScrollReveal>

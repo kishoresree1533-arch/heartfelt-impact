@@ -3,7 +3,7 @@ import servicesImage from "@/assets/services_causes_banner.png";
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="bg-white overflow-hidden py-20 md:py-32">
+    <section id="services" className="bg-white overflow-hidden py-10 md:py-16">
       <div className="mx-auto max-w-7xl px-8">
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -18,7 +18,7 @@ const ServicesSection = () => {
               <span className="italic text-gold">Compassion</span>
             </h2>
             <div className="h-px w-12 bg-gold/40 mb-8" />
-            <p className="text-base font-light leading-relaxed text-muted-foreground max-w-md">
+            <p className="text-base font-normal leading-relaxed text-muted-foreground max-w-md">
               Every act of kindness ripples outward. These are the pillars
               through which we transform lives — one community at a time.
             </p>

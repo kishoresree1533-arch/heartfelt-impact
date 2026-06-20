@@ -42,7 +42,7 @@ const promises = [
 
 const PromiseSection = () => {
   return (
-    <section className="relative bg-white py-20 md:py-28 overflow-hidden">
+    <section className="relative bg-white py-8 md:py-10 overflow-hidden">
 
       {/* Subtle background texture */}
       <div className="absolute inset-0 pointer-events-none">
@@ -53,7 +53,7 @@ const PromiseSection = () => {
       <div className="relative mx-auto max-w-7xl px-8">
 
         {/* ── Two-column header ── */}
-        <div className="grid lg:grid-cols-2 gap-12 items-end mb-16 md:mb-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-end mb-8">
           <ScrollReveal direction="left">
             <p className="text-[10px] uppercase tracking-[0.6em] text-gold font-bold mb-5">
               Our Commitment
@@ -66,7 +66,7 @@ const PromiseSection = () => {
 
           <ScrollReveal direction="right">
             <div className="lg:pl-10 lg:border-l border-border">
-              <p className="text-base font-light leading-relaxed text-muted-foreground max-w-md">
+              <p className="text-base font-normal leading-relaxed text-muted-foreground max-w-md">
                 We work towards creating lasting change by supporting communities
                 with essential needs, education and healthcare — because every life
                 deserves dignity.
@@ -114,7 +114,7 @@ const PromiseSection = () => {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm font-light leading-relaxed text-muted-foreground flex-1">
+                  <p className="text-sm font-normal leading-relaxed text-muted-foreground flex-1">
                     {p.desc}
                   </p>
                 </div>

@@ -60,7 +60,7 @@ const AwardsSection = () => {
   const prev = () => setLightbox((i) => ((i ?? 0) - 1 + galleryImages.length) % galleryImages.length);
   const next = () => setLightbox((i) => ((i ?? 0) + 1) % galleryImages.length);
   return (
-    <section className="relative bg-[#faf8f5] py-16 md:py-24 overflow-hidden">
+    <section className="relative bg-[#faf8f5] py-8 md:py-10 overflow-hidden">
 
       {/* Ambient blobs */}
       <div className="pointer-events-none absolute inset-0">
@@ -72,7 +72,7 @@ const AwardsSection = () => {
 
         {/* ── Header ── */}
         <ScrollReveal>
-          <div className="grid lg:grid-cols-2 gap-12 items-end mb-16 md:mb-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-end mb-8">
             <div>
               <p className="text-[10px] uppercase tracking-[0.6em] text-gold font-bold mb-5">
                 Recognition & Honours
@@ -83,7 +83,7 @@ const AwardsSection = () => {
               </h2>
             </div>
             <div className="lg:pl-10 lg:border-l border-border">
-              <p className="text-base font-light leading-relaxed text-muted-foreground max-w-md">
+              <p className="text-base font-normal leading-relaxed text-muted-foreground max-w-md">
                 Over the past five years, the Irai Thuligal Movement has been
                 actively serving society through blood donation support and various
                 humanitarian initiatives. In recognition of our dedicated service

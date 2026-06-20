@@ -11,7 +11,7 @@ const milestones = [
 
 const IntroSection = () => {
   return (
-    <section className="relative bg-white overflow-hidden py-16 md:py-24">
+    <section className="relative bg-white overflow-hidden py-10 md:py-14">
 
       {/* Ambient blobs */}
       <div className="pointer-events-none absolute inset-0">
@@ -90,7 +90,7 @@ const IntroSection = () => {
               <div className="h-px w-12 bg-gold/40 mb-8" />
 
               {/* Story text — split into digestible paragraphs */}
-              <div className="space-y-5 text-base font-light leading-relaxed text-muted-foreground max-w-lg">
+              <div className="space-y-5 text-base font-normal leading-relaxed text-muted-foreground max-w-lg">
                 <p>
                   Recognising the challenges faced by pregnant women from rural
                   communities in securing blood donors during medical emergencies

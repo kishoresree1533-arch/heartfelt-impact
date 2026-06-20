@@ -9,7 +9,9 @@ import Services from "./pages/Services.tsx";
 import Gallery from "./pages/Gallery.tsx";
 import Donate from "./pages/Donate.tsx";
 import Contact from "./pages/Contact.tsx";
+import Membership from "./pages/Membership.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import WhatsAppFloat from "./components/WhatsAppFloat.tsx";
 
 const queryClient = new QueryClient();
 
@@ -26,9 +28,12 @@ const App = () => (
           <Route path="/gallery"      element={<Gallery />} />
           <Route path="/donate"       element={<Donate />} />
           <Route path="/contact"      element={<Contact />} />
+          <Route path="/membership"   element={<Membership />} />
           {/* Catch-all */}
           <Route path="*"             element={<NotFound />} />
         </Routes>
+        {/* Global floating WhatsApp button */}
+        <WhatsAppFloat />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

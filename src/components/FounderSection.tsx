@@ -4,9 +4,9 @@ import founderLogo from "@/assets/founder-logo.png";
 
 const FounderSection = () => {
   return (
-    <section id="founder" className="bg-background pt-12 pb-16 md:pt-16 md:pb-16 overflow-hidden">
+    <section id="founder" className="bg-background pt-8 pb-10 md:pt-10 md:pb-12 overflow-hidden">
       <div className="mx-auto max-w-7xl px-8">
-        <div className="grid gap-20 lg:grid-cols-2 lg:items-center">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <ScrollReveal direction="left">
             <div className="relative group flex justify-center items-center p-8 bg-white rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-primary/5">
               <div className="absolute -inset-4 bg-gold/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />

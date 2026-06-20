@@ -17,7 +17,7 @@ const stats = [
 
 const TrustSection = () => {
   return (
-    <section className="relative bg-white py-16 md:py-24 overflow-hidden">
+    <section className="relative bg-white py-10 md:py-14 overflow-hidden">
 
       {/* Soft background blobs */}
       <div className="pointer-events-none absolute inset-0">
@@ -29,7 +29,7 @@ const TrustSection = () => {
 
         {/* ── Top label + heading centred ── */}
         <ScrollReveal>
-          <div className="text-center mb-14 md:mb-18">
+          <div className="text-center mb-8">
             <p className="text-[10px] uppercase tracking-[0.6em] text-gold font-bold mb-4">
               Built on Integrity
             </p>
@@ -37,7 +37,7 @@ const TrustSection = () => {
               Your Trust <span className="italic text-gold">Creates Impact</span>
             </h2>
             <div className="mx-auto mt-6 h-px w-14 bg-gold/40" />
-            <p className="mt-6 text-base font-light leading-relaxed text-muted-foreground max-w-lg mx-auto">
+            <p className="mt-6 text-base font-normal leading-relaxed text-muted-foreground max-w-lg mx-auto">
               Every contribution is handled responsibly to create meaningful
               and measurable change in the lives of those who need it most.
             </p>
@@ -45,7 +45,7 @@ const TrustSection = () => {
         </ScrollReveal>
 
         {/* ── Stats row ── */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {stats.map((s, i) => (
             <ScrollReveal key={s.label} delay={i * 0.1} direction="up">
               <div className="group relative flex flex-col items-center text-center rounded-2xl border border-border bg-[#faf8f5] px-6 py-8 hover:border-gold/50 hover:bg-amber-50/60 hover:shadow-xl transition-all duration-500 hover:-translate-y-1 overflow-hidden">
@@ -79,7 +79,7 @@ const TrustSection = () => {
                 <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-xl bg-gold/10 border border-gold/20 group-hover:bg-gold/20 transition-all duration-400">
                   <p.icon className="h-4 w-4 text-gold" />
                 </div>
-                <span className="text-sm font-light text-foreground/70 group-hover:text-foreground transition-colors duration-300">
+                <span className="text-sm font-normal text-foreground/70 group-hover:text-foreground transition-colors duration-300">
                   {p.text}
                 </span>
               </div>

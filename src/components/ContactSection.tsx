@@ -15,7 +15,7 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email Us",
-    value: "contact@iraithuligal.org",
+    value: "iraithuligaliyakkam@gmail.com",
     sub: "We reply within 24 hours",
     bg: "bg-sky-50",
     border: "border-sky-200",
@@ -43,6 +43,63 @@ const contactInfo = [
 
 const ContactSection = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Determine the API endpoint based on environment
+    const currentPath = window.location.pathname;
+    const basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+    const apiEndpoint = window.location.hostname === 'localhost' && (window.location.port === '5173' || window.location.port === '5174')
+      ? 'http://localhost:8080/heartfelt-impact/admin/api/contact.php'
+      : `${window.location.origin}${basePath}admin/api/contact.php`;
+
+    // Save to database
+    fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Database save response:", data);
+      })
+      .catch((err) => {
+        console.error("Database save failed:", err);
+      });
+
+    const text = [
+      `*New Message from Heartfelt Impact Website*`,
+      ``,
+      `*Name:* ${formData.name}`,
+      `*Email:* ${formData.email}`,
+      formData.phone ? `*Phone:* ${formData.phone}` : null,
+      formData.subject ? `*Subject:* ${formData.subject}` : null,
+      ``,
+      `*Message:*`,
+      formData.message,
+    ]
+      .filter((line) => line !== null)
+      .join("\n");
+
+    const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, "_blank");
+    setSubmitted(true);
+  };
+
 
   return (
     <section id="contact" className="bg-white py-16 md:py-24 overflow-hidden">
@@ -66,7 +123,7 @@ const ContactSection = () => {
               Be the <span className="italic text-gold">Change.</span>
             </h2>
             <div className="mx-auto mt-5 h-px w-14 bg-gold/40" />
-            <p className="mt-5 text-base font-light text-muted-foreground max-w-lg mx-auto">
+            <p className="mt-5 text-base font-normal text-muted-foreground max-w-lg mx-auto">
               Whether you want to volunteer, partner with us, or simply know more —
               every conversation plants a seed of hope.
             </p>
@@ -75,20 +132,34 @@ const ContactSection = () => {
 
         {/* ── Contact info cards ── */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
-          {contactInfo.map((item, i) => (
-            <ScrollReveal key={item.label} delay={i * 0.1} direction="up">
-              <div className={`group flex flex-col gap-3 rounded-2xl border ${item.border} ${item.bg} p-5 hover:shadow-lg transition-all duration-500 hover:-translate-y-1`}>
+          {contactInfo.map((item, i) => {
+            const isEmail = item.label === "Email Us";
+            const isPhone = item.label === "Call Us";
+            const href = isEmail
+              ? "mailto:iraithuligaliyakkam@gmail.com"
+              : isPhone
+              ? "tel:+919876543210"
+              : undefined;
+
+            const inner = (
+              <div className={`group flex flex-col gap-3 rounded-2xl border ${item.border} ${item.bg} p-5 hover:shadow-lg transition-all duration-500 hover:-translate-y-1 ${href ? "cursor-pointer" : ""}`}>
                 <div className={`flex h-10 w-10 items-center justify-center rounded-xl bg-white border ${item.border} shadow-sm group-hover:scale-110 transition-transform duration-400`}>
                   <item.icon className={`h-4 w-4 ${item.iconColor}`} />
                 </div>
                 <div>
                   <p className="text-[9px] uppercase tracking-[0.4em] text-muted-foreground/60 mb-1">{item.label}</p>
-                  <p className="text-sm font-medium text-primary leading-snug">{item.value}</p>
+                  <p className={`text-sm font-medium leading-snug ${href ? "text-sky-600 underline underline-offset-2" : "text-primary"}`}>{item.value}</p>
                   <p className="text-[10px] text-muted-foreground/50 mt-0.5">{item.sub}</p>
                 </div>
               </div>
-            </ScrollReveal>
-          ))}
+            );
+
+            return (
+              <ScrollReveal key={item.label} delay={i * 0.1} direction="up">
+                {href ? <a href={href}>{inner}</a> : inner}
+              </ScrollReveal>
+            );
+          })}
         </div>
 
         {/* ── Main grid: quote + form ── */}
@@ -129,7 +200,7 @@ const ContactSection = () => {
 
               {/* Social / CTA */}
               <div className="rounded-2xl border border-gold/20 bg-amber-50/60 p-6">
-                <p className="text-sm font-light text-muted-foreground mb-4">
+                <p className="text-sm font-normal text-muted-foreground mb-4">
                   Want to make an immediate difference?
                 </p>
                 <a
@@ -165,7 +236,7 @@ const ContactSection = () => {
                     <Heart className="h-7 w-7 fill-gold text-gold" />
                   </div>
                   <h3 className="font-display text-2xl text-primary mb-3">Message Received</h3>
-                  <p className="text-sm font-light text-muted-foreground max-w-xs">
+                  <p className="text-sm font-normal text-muted-foreground max-w-xs">
                     Thank you for reaching out. Our team will respond within 24 hours.
                   </p>
                   <button
@@ -177,21 +248,27 @@ const ContactSection = () => {
                 </div>
               ) : (
                 <form
-                  onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
+                  onSubmit={handleSubmit}
                   className="p-8 space-y-5"
                 >
                   {/* Name + Email */}
                   <div className="grid gap-4 sm:grid-cols-2">
                     <input
                       type="text"
+                      name="name"
                       placeholder="Your Name"
                       required
+                      value={formData.name}
+                      onChange={handleChange}
                       className="w-full rounded-xl border border-border bg-white px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-gold/50 focus:ring-2 focus:ring-gold/10 transition-all duration-300"
                     />
                     <input
                       type="email"
+                      name="email"
                       placeholder="Email Address"
                       required
+                      value={formData.email}
+                      onChange={handleChange}
                       className="w-full rounded-xl border border-border bg-white px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-gold/50 focus:ring-2 focus:ring-gold/10 transition-all duration-300"
                     />
                   </div>
@@ -199,31 +276,39 @@ const ContactSection = () => {
                   {/* Phone */}
                   <input
                     type="tel"
+                    name="phone"
                     placeholder="Phone Number (optional)"
+                    value={formData.phone}
+                    onChange={handleChange}
                     className="w-full rounded-xl border border-border bg-white px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-gold/50 focus:ring-2 focus:ring-gold/10 transition-all duration-300"
                   />
 
                   {/* Subject */}
                   <div className="relative">
                     <select
-                      defaultValue=""
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
                       className="w-full rounded-xl border border-border bg-white px-4 py-3.5 text-sm text-foreground/70 outline-none focus:border-gold/50 focus:ring-2 focus:ring-gold/10 transition-all duration-300 appearance-none cursor-pointer"
                     >
                       <option value="" disabled>I want to… (select)</option>
-                      <option value="volunteer">Volunteer with the team</option>
-                      <option value="donate">Make a donation</option>
-                      <option value="partner">Partner / Collaborate</option>
-                      <option value="info">Learn more about missions</option>
-                      <option value="other">Other</option>
+                      <option value="Volunteer with the team">Volunteer with the team</option>
+                      <option value="Make a donation">Make a donation</option>
+                      <option value="Partner / Collaborate">Partner / Collaborate</option>
+                      <option value="Learn more about missions">Learn more about missions</option>
+                      <option value="Other">Other</option>
                     </select>
                     <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground/40 text-xs">▼</div>
                   </div>
 
                   {/* Message */}
                   <textarea
+                    name="message"
                     placeholder="Your message…"
                     rows={4}
                     required
+                    value={formData.message}
+                    onChange={handleChange}
                     className="w-full resize-none rounded-xl border border-border bg-white px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-gold/50 focus:ring-2 focus:ring-gold/10 transition-all duration-300"
                   />
 

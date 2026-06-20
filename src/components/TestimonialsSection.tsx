@@ -20,7 +20,7 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="bg-background py-16 md:py-24">
+    <section className="bg-background py-10 md:py-14">
       <div className="mx-auto max-w-6xl px-6">
         <ScrollReveal>
           <p className="text-center text-sm uppercase tracking-[0.3em] text-gold">Voices of Hope</p>

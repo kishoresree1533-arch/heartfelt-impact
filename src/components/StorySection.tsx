@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import ScrollReveal from "./ScrollReveal";
-import chapterReal1 from "@/assets/chapter-real-1.jpg";
 import chapterReal2 from "@/assets/chapter-real-2.jpg";
 import chapterReal3a from "@/assets/chapter-real-3a.jpg";
 import chapterReal3b from "@/assets/chapter-real-3b.jpg";
@@ -9,9 +8,65 @@ import chapterReal3d from "@/assets/chapter-real-3d.jpg";
 import chapterReal4a from "@/assets/chapter-real-4a.jpg";
 import chapterReal4b from "@/assets/chapter-real-4b.jpg";
 import chapterReal4c from "@/assets/chapter-real-4c.jpg";
+import bloodExtra1 from "@/assets/attachments (1)/IMG20260607105124.jpg";
+import bloodExtra2 from "@/assets/attachments (1)/IMG_20250820_152238 (1).jpg";
+import bloodExtra3 from "@/assets/attachments (1)/IMG_20250926_154011.jpg";
+import bloodNew1 from "@/assets/blood donation/IMG-20251129-WA0014.jpg";
+import bloodNew2 from "@/assets/blood donation/IMG-20251129-WA0015.jpg";
+import bloodNew3 from "@/assets/blood donation/IMG-20251129-WA0016.jpg";
+import bloodNew4 from "@/assets/blood donation/IMG-20251129-WA0019.jpg";
+import bloodNew5 from "@/assets/blood donation/IMG-20251129-WA0023.jpg";
+import bloodNew6 from "@/assets/blood donation/IMG-20251129-WA0024.jpg";
+import bloodNew7 from "@/assets/blood donation/IMG_20260616_101826.jpg";
 
-const bloodDonationImages = [chapterReal3a, chapterReal3b, chapterReal3c, chapterReal3d];
+import fwd1 from "@/assets/fwd/633320.jpg";
+import fwd2 from "@/assets/fwd/633321.jpg";
+import fwd3 from "@/assets/fwd/633322.jpg";
+import fwd4 from "@/assets/fwd/633323.jpg";
+import fwd5 from "@/assets/fwd/633324.jpg";
+import fwd6 from "@/assets/fwd/633325.jpg";
+import fwd7 from "@/assets/fwd/633326.jpg";
+import fwd8 from "@/assets/fwd/633327.jpg";
+
+const finalActImages = [fwd1, fwd2, fwd3, fwd4, fwd5, fwd6, fwd7, fwd8];
+const bloodDonationImages = [
+  chapterReal3a,
+  chapterReal3b,
+  chapterReal3c,
+  chapterReal3d,
+  bloodExtra1,
+  bloodExtra2,
+  bloodExtra3,
+  bloodNew1,
+  bloodNew2,
+  bloodNew3,
+  bloodNew4,
+  bloodNew5,
+  bloodNew6,
+  bloodNew7
+];
 const treePlantingImages = [chapterReal4a, chapterReal4b, chapterReal4c];
+
+import foodDonate1 from "@/assets/food donate/IMG_20260618_122827.jpg";
+import foodDonate2 from "@/assets/food donate/IMG_20260618_122838.jpg";
+import foodDonate3 from "@/assets/food donate/IMG_20260618_122848.jpg";
+import foodDonate4 from "@/assets/food donate/IMG_20260618_122859.jpg";
+import foodDonate5 from "@/assets/food donate/IMG_20260618_122909.jpg";
+
+const foodDonateImages = [foodDonate1, foodDonate2, foodDonate3, foodDonate4, foodDonate5];
+
+import gallery1 from "@/assets/gallery image/IMG_20260326_124213.jpg - Copy.jpeg";
+import gallery2 from "@/assets/gallery image/IMG_20260326_124227.jpg.jpeg";
+import gallery3 from "@/assets/gallery image/IMG_20260326_124237.jpg.jpeg";
+import gallery4 from "@/assets/gallery image/IMG_20260326_124248.jpg.jpeg";
+
+const nourishmentImages = [
+  chapterReal2,
+  gallery1,
+  gallery2,
+  gallery3,
+  gallery4
+];
 
 /* ─────────────────────────────────────────────
    Reusable Premium Image Slider
@@ -119,16 +174,24 @@ const chapters = [
     label: "The Final Act",
     title: "A Final Act of Humanity",
     text: "No name, no family, no final goodbye,\nLeft alone beneath the open sky.\nWe stand for dignity till the end,\nGiving respect when none can send.",
-    image: chapterReal1,
-    type: "single",
+    image: null,
+    type: "slider",
+    sliderImages: finalActImages,
+    sliderAccent: "bg-amber-500",
+    sliderLabel: "In Memory",
+    sliderIcon: "🕊",
   },
   {
     number: "02",
     label: "The Nourishment",
     title: "Kindness Begins With a Meal",
     text: "Every child deserves a full plate,\nA chance to smile, a hopeful fate.\nYour small help can light their way,\nBe the reason they smile today.",
-    image: chapterReal2,
-    type: "single",
+    image: null,
+    type: "slider",
+    sliderImages: nourishmentImages,
+    sliderAccent: "bg-amber-500",
+    sliderLabel: "Nourishing",
+    sliderIcon: "🍲",
   },
   {
     number: "03",
@@ -154,6 +217,18 @@ const chapters = [
     sliderLabel: "Growing",
     sliderIcon: "🌱",
   },
+  {
+    number: "05",
+    label: "The Sustenance",
+    title: "A Warm Meal, A Restored Soul",
+    text: "For those who wander, forgotten and cold,\nWith stories of hardship left untold.\nA simple meal, a cup of grace,\nRestores a smile on every face.",
+    image: null,
+    type: "slider",
+    sliderImages: foodDonateImages,
+    sliderAccent: "bg-amber-600",
+    sliderLabel: "Nourishing",
+    sliderIcon: "🍛",
+  },
 ];
 
 /* ─────────────────────────────────────────────
@@ -174,7 +249,12 @@ const StorySection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
           {chapters.map((chapter, index) => (
-            <div key={index} className="group relative">
+            <div
+              key={index}
+              className={`group relative ${
+                index === 4 ? "md:col-span-2 md:max-w-xl md:mx-auto w-full" : ""
+              }`}
+            >
               <ScrollReveal direction={index % 2 === 0 ? "left" : "right"} delay={index * 0.1}>
                 {chapter.type === "slider" && chapter.sliderImages ? (
                   <PremiumSlider
@@ -194,14 +274,14 @@ const StorySection = () => {
                   </div>
                 )}
 
-                <div className="mt-12 space-y-6">
+                <div className={`mt-12 space-y-6 ${index === 4 ? "md:text-center" : ""}`}>
                   <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-gold-light">
                     Chapter {chapter.number} — {chapter.label}
                   </p>
                   <h3 className="font-display text-4xl tracking-tight leading-tight group-hover:text-gold transition-colors duration-500">
                     {chapter.title}
                   </h3>
-                  <p className="max-w-md text-lg font-light leading-relaxed text-muted-foreground whitespace-pre-line">
+                  <p className={`text-lg font-normal leading-relaxed text-muted-foreground whitespace-pre-line ${index === 4 ? "mx-auto max-w-lg" : "max-w-md"}`}>
                     {chapter.text}
                   </p>
                 </div>

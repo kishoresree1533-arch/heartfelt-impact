@@ -11,6 +11,16 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       overlay: false,
     },
+    proxy: {
+      '/admin': {
+        target: 'http://localhost/heartfelt-impact',
+        changeOrigin: true,
+      },
+      '/heartfelt-impact/admin': {
+        target: 'http://localhost',
+        changeOrigin: true,
+      }
+    }
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

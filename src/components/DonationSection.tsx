@@ -40,7 +40,7 @@ const DonationSection = () => {
               Today, You Can <span className="italic text-gold">Rewrite a Life</span>
             </h2>
             <div className="mx-auto mt-6 h-px w-14 bg-gold/40" />
-            <p className="mt-6 text-base font-light text-muted-foreground max-w-lg mx-auto">
+            <p className="mt-6 text-base font-normal text-muted-foreground max-w-lg mx-auto">
               Every contribution — big or small — reaches real people in real need.
               Choose how you'd like to give.
             </p>

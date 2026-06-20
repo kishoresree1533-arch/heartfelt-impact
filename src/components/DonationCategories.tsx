@@ -47,12 +47,12 @@ const categories = [
 
 const DonationCategories = () => {
   return (
-    <section className="bg-[#faf8f5] py-20 md:py-28 overflow-hidden">
+    <section className="bg-[#faf8f5] py-10 md:py-14 overflow-hidden">
       <div className="mx-auto max-w-7xl px-8">
 
         {/* ── Header ── */}
         <ScrollReveal>
-          <div className="grid lg:grid-cols-2 gap-10 items-end mb-14 md:mb-20">
+          <div className="grid lg:grid-cols-2 gap-10 items-end mb-8">
             <div>
               <p className="text-[10px] uppercase tracking-[0.6em] text-gold font-bold mb-5">
                 Give With Purpose
@@ -63,7 +63,7 @@ const DonationCategories = () => {
               </h2>
             </div>
             <div className="lg:pl-10 lg:border-l border-border">
-              <p className="text-base font-light leading-relaxed text-muted-foreground max-w-md">
+              <p className="text-base font-normal leading-relaxed text-muted-foreground max-w-md">
                 Every rupee is directed to a specific cause. Choose where your
                 heart leads — and watch real change unfold.
               </p>
@@ -110,7 +110,7 @@ const DonationCategories = () => {
                   <h3 className="font-display text-lg text-primary mb-2 group-hover:text-gold transition-colors duration-400">
                     {cat.title}
                   </h3>
-                  <p className="text-sm font-light leading-relaxed text-muted-foreground mb-5 line-clamp-2 min-h-[2.8rem]">
+                  <p className="text-sm font-normal leading-relaxed text-muted-foreground mb-5 line-clamp-2 min-h-[2.8rem]">
                     {cat.desc}
                   </p>
                   <Link
