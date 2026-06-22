@@ -587,10 +587,10 @@ if ($tab === 'messages') {
             color: #991b1b;
         }
 
-        /* Stats Cards */
+        /* Stats Cards Redesign */
         .stats-grid {
             display: grid;
-            grid-template-cols: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-cols: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.5rem;
             margin-bottom: 3rem;
         }
@@ -598,49 +598,114 @@ if ($tab === 'messages') {
         .stat-card {
             background-color: #ffffff;
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2rem;
+            border-radius: 24px;
+            padding: 1.75rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
-            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(18, 22, 26, 0.015);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(var(--card-accent-rgb), 0.02));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
         }
 
         .stat-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-4px);
+            border-color: rgba(var(--card-accent-rgb), 0.3);
+            box-shadow: 0 12px 30px rgba(var(--card-accent-rgb), 0.06);
+        }
+
+        .stat-card:hover::after {
+            opacity: 1;
+        }
+
+        .stat-info {
+            z-index: 2;
         }
 
         .stat-info .label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             color: var(--text-muted);
             margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .stat-card:hover .stat-info .label {
+            color: rgb(var(--card-accent-rgb));
         }
 
         .stat-info .value {
             font-family: 'Playfair Display', serif;
-            font-size: 2.25rem;
-            font-weight: 600;
+            font-size: 2.5rem;
+            font-weight: 700;
             color: var(--primary-color);
+            line-height: 1.1;
+            margin-bottom: 0.25rem;
         }
 
-        .stat-icon {
+        .stat-info .sub-label {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            font-weight: 500;
+            display: block;
+        }
+
+        .stat-icon-wrapper {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
-            background-color: var(--gold-light);
-            color: var(--gold-color);
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            background: rgba(var(--card-accent-rgb), 0.08);
+            color: rgb(var(--card-accent-rgb));
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 2;
         }
 
-        .stat-icon svg {
+        .stat-card:hover .stat-icon-wrapper {
+            transform: scale(1.1) rotate(6deg);
+            background: rgb(var(--card-accent-rgb));
+            color: #ffffff;
+        }
+
+        .stat-icon-wrapper svg {
             width: 24px;
             height: 24px;
+            stroke-width: 2px;
+        }
+
+        /* Stat Card Theme Accents */
+        .stat-card.card-coral {
+            --card-accent-rgb: 239, 68, 68;
+        }
+        .stat-card.card-emerald {
+            --card-accent-rgb: 16, 185, 129;
+        }
+        .stat-card.card-indigo {
+            --card-accent-rgb: 79, 70, 229;
+        }
+        .stat-card.card-gold {
+            --card-accent-rgb: 204, 153, 51;
+        }
+        .stat-card.card-purple {
+            --card-accent-rgb: 147, 51, 234;
         }
 
         /* Tables & Lists */
@@ -649,7 +714,7 @@ if ($tab === 'messages') {
             border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 2.5rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+            box-shadow: 0 4px 25px rgba(18, 22, 26, 0.015);
         }
 
         .table-header-row {
@@ -657,23 +722,26 @@ if ($tab === 'messages') {
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.25rem;
         }
 
         .table-title {
             font-family: 'Playfair Display', serif;
             font-size: 1.35rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .admin-table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             text-align: left;
         }
 
         .admin-table th {
             padding: 1.25rem 1.5rem;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.15em;
@@ -683,10 +751,11 @@ if ($tab === 'messages') {
 
         .admin-table td {
             padding: 1.25rem 1.5rem;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             color: var(--primary-color);
             border-bottom: 1px solid var(--border-color);
             vertical-align: middle;
+            transition: background-color 0.2s ease;
         }
 
         .admin-table tr:last-child td {
@@ -694,7 +763,7 @@ if ($tab === 'messages') {
         }
 
         .admin-table tr:hover td {
-            background-color: #fdfdfd;
+            background-color: #faf8f5;
         }
 
         /* Forms in Dashboard */
@@ -1064,51 +1133,65 @@ if ($tab === 'messages') {
             <!-- OVERVIEW TAB -->
             <?php if ($tab === 'dashboard'): ?>
                 <div class="stats-grid">
-                    <div class="stat-card">
+                    <!-- Stat Card: Pending Messages -->
+                    <div class="stat-card card-coral">
                         <div class="stat-info">
                             <p class="label">Pending Messages</p>
                             <p class="value"><?php echo $total_messages; ?></p>
+                            <span class="sub-label">Awaiting reply / review</span>
                         </div>
-                        <div class="stat-icon">
+                        <div class="stat-icon-wrapper">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                         </div>
                     </div>
-                    <div class="stat-card">
+
+                    <!-- Stat Card: Donation Causes -->
+                    <div class="stat-card card-emerald">
                         <div class="stat-info">
                             <p class="label">Donation Causes</p>
                             <p class="value"><?php echo $total_donations; ?></p>
+                            <span class="sub-label">Active charity initiatives</span>
                         </div>
-                        <div class="stat-icon">
+                        <div class="stat-icon-wrapper">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                         </div>
                     </div>
-                    <div class="stat-card">
+
+                    <!-- Stat Card: Gallery Images -->
+                    <div class="stat-card card-indigo">
                         <div class="stat-info">
                             <p class="label">Gallery Images</p>
                             <p class="value"><?php echo $total_gallery; ?></p>
+                            <span class="sub-label">Media files uploaded</span>
                         </div>
-                        <div class="stat-icon">
+                        <div class="stat-icon-wrapper">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
                         </div>
                     </div>
-                    <div class="stat-card">
+
+                    <!-- Stat Card: Testimonials -->
+                    <div class="stat-card card-gold">
                         <div class="stat-info">
                             <p class="label">Testimonials</p>
                             <p class="value"><?php echo $total_testimonials; ?></p>
+                            <span class="sub-label">Stories of community impact</span>
                         </div>
-                        <div class="stat-icon">
+                        <div class="stat-icon-wrapper">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                         </div>
                     </div>
-                    <div class="stat-card">
+
+                    <!-- Stat Card: Total Members -->
+                    <div class="stat-card card-purple">
                         <div class="stat-info">
                             <p class="label">Total Members</p>
                             <p class="value"><?php echo $total_memberships; ?></p>
+                            <span class="sub-label">Registered volunteers</span>
                         </div>
-                        <div class="stat-icon" style="position:relative;">
+                        <div class="stat-icon-wrapper" style="position:relative;">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             <?php if ($pending_memberships > 0): ?>
-                            <span style="position:absolute;top:-6px;right:-6px;background:var(--gold-color);color:var(--primary-color);font-size:0.55rem;font-weight:800;min-width:16px;height:16px;border-radius:9999px;display:flex;align-items:center;justify-content:center;"><?php echo $pending_memberships; ?></span>
+                            <span style="position:absolute;top:-6px;right:-6px;background:var(--gold-color);color:var(--primary-color);font-size:0.55rem;font-weight:800;min-width:18px;height:18px;border-radius:9999px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px rgba(0,0,0,0.15);"><?php echo $pending_memberships; ?></span>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -1116,35 +1199,40 @@ if ($tab === 'messages') {
 
                 <div class="table-card">
                     <div class="table-header-row">
-                        <h3 class="table-title">Recent Enquiries</h3>
+                        <div>
+                            <h3 class="table-title">Recent Enquiries</h3>
+                            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;">The latest messages sent by website visitors.</p>
+                        </div>
                         <a href="?tab=messages" class="btn btn-gold btn-sm">View All Messages</a>
                     </div>
                     <?php 
                     $recent_messages = $pdo->query("SELECT * FROM contacts ORDER BY submitted_at DESC LIMIT 5")->fetchAll();
                     if (empty($recent_messages)): 
                     ?>
-                        <p style="text-align: center; color: var(--text-muted); padding: 2rem 0;">No messages received yet.</p>
+                        <p style="text-align: center; color: var(--text-muted); padding: 3rem 0;">No messages received yet.</p>
                     <?php else: ?>
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Subject</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($recent_messages as $msg): ?>
+                        <div style="overflow-x:auto;">
+                            <table class="admin-table">
+                                <thead>
                                     <tr>
-                                        <td><strong><?php echo htmlspecialchars($msg['name']); ?></strong></td>
-                                        <td><?php echo htmlspecialchars($msg['email']); ?></td>
-                                        <td><?php echo htmlspecialchars($msg['subject'] ?? 'General Enquiry'); ?></td>
-                                        <td><?php echo date('d M Y, h:i A', strtotime($msg['submitted_at'])); ?></td>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Subject</th>
+                                        <th>Date Submitted</th>
                                     </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($recent_messages as $msg): ?>
+                                        <tr>
+                                            <td><strong><?php echo htmlspecialchars($msg['name']); ?></strong></td>
+                                            <td><span style="color:var(--text-muted);"><?php echo htmlspecialchars($msg['email']); ?></span></td>
+                                            <td><strong><?php echo htmlspecialchars($msg['subject'] ?? 'General Enquiry'); ?></strong></td>
+                                            <td><span style="font-size:0.8rem; color:var(--text-light);"><?php echo date('d M Y, h:i A', strtotime($msg['submitted_at'])); ?></span></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
