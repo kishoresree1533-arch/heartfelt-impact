@@ -85,7 +85,7 @@ const DonationCategories = () => {
               <div className={`group relative flex flex-col h-full overflow-hidden rounded-2xl ring-1 ring-black/8 bg-white shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ${cat.accentBorder} hover:ring-2`}>
 
                 {/* ── Full image, no overlay ── */}
-                <div className="relative overflow-hidden aspect-square">
+                <div className="relative overflow-hidden aspect-video sm:aspect-square">
                   <img
                     src={cat.image}
                     alt={cat.title}

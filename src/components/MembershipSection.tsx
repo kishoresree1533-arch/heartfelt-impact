@@ -66,7 +66,7 @@ const MembershipSection = () => {
 
           {/* Left — dark feature card */}
           <ScrollReveal direction="left" className="lg:col-span-3">
-            <div className="relative overflow-hidden rounded-3xl bg-primary h-full min-h-[380px] p-10 md:p-12 flex flex-col justify-between shadow-2xl">
+            <div className="relative overflow-hidden rounded-3xl bg-primary h-full min-h-[380px] p-6 sm:p-10 md:p-12 flex flex-col justify-between shadow-2xl">
               {/* Corner accents */}
               <div className="absolute top-6 left-6 h-px w-12 bg-gold opacity-60" />
               <div className="absolute top-6 left-6 w-px h-12 bg-gold opacity-60" />

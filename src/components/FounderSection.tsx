@@ -36,7 +36,7 @@ const FounderSection = () => {
                 <div className="h-px w-12 bg-gold" />
                 <div>
                   <p className="font-display text-xl tracking-tight">S.Karthikeyan .BBA</p>
-                  <p className="mt-1 text-[10px] uppercase tracking-[0.4em] text-gold-light font-bold text-nowrap">Founder & Managing Trustee</p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-gold-light font-bold text-wrap sm:text-nowrap">Founder & Managing Trustee</p>
                 </div>
               </div>
             </div>

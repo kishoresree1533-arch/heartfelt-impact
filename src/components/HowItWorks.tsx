@@ -32,7 +32,7 @@ const HowItWorks = () => {
         </ScrollReveal>
 
         {/* Steps row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
           {steps.map((step, i) => (
             <ScrollReveal key={step.number} delay={i * 0.12} direction="up" className="h-full">
               <div className="group relative flex flex-col h-full rounded-2xl border border-white/8 bg-white/[0.03] px-6 py-7 hover:border-gold/40 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(204,153,51,0.08)] transition-all duration-500">

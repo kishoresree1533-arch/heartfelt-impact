@@ -135,20 +135,22 @@ const PremiumSlider = ({ images, accentColor = "bg-red-500", label = "Live", lab
       </div>
 
       {/* Thumbnail strip */}
-      <div className="absolute bottom-6 left-0 right-0 z-20 flex justify-center gap-2 px-4">
-        {images.map((img, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i)}
-            className={`relative overflow-hidden rounded transition-all duration-300 focus:outline-none ${
-              i === current
-                ? "w-14 h-10 ring-2 ring-white/90 ring-offset-1 ring-offset-transparent opacity-100 scale-110 shadow-lg"
-                : "w-10 h-10 opacity-45 hover:opacity-75 hover:scale-105"
-            }`}
-          >
-            <img src={img} alt="" className="w-full h-full object-cover" />
-          </button>
-        ))}
+      <div className="absolute bottom-6 left-0 right-0 z-20 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex justify-center gap-2 px-4 w-max min-w-full">
+          {images.map((img, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              className={`relative overflow-hidden rounded transition-all duration-300 focus:outline-none flex-shrink-0 ${
+                i === current
+                  ? "w-14 h-10 ring-2 ring-white/90 ring-offset-1 ring-offset-transparent opacity-100 scale-110 shadow-lg"
+                  : "w-10 h-10 opacity-45 hover:opacity-75 hover:scale-105"
+              }`}
+            >
+              <img src={img} alt="" className="w-full h-full object-cover" />
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Slide counter */}

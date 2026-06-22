@@ -6,7 +6,7 @@ import ctaImage from "@/assets/chapter-real-1.jpg";
 
 const VolunteerCTA = () => {
   return (
-    <section className="bg-white py-10 md:py-14 px-6 md:px-12">
+    <section className="bg-white py-10 md:py-14 px-4 sm:px-6 md:px-12">
       <ScrollReveal direction="up">
         <div className="relative overflow-hidden rounded-3xl mx-auto max-w-7xl shadow-2xl min-h-[340px] md:min-h-[380px]">
 
@@ -31,7 +31,7 @@ const VolunteerCTA = () => {
           <div className="absolute bottom-6 right-6 w-px h-14 bg-gold opacity-70" />
 
           {/* Content */}
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 px-10 md:px-16 py-14 md:py-16 h-full">
+          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 px-6 sm:px-10 md:px-16 py-12 md:py-16 h-full">
 
             {/* Left */}
             <div className="max-w-lg">

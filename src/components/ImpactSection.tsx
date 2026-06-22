@@ -67,13 +67,13 @@ const ImpactSection = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {stats.map((stat, i) => (
             <ScrollReveal key={stat.label} delay={i * 0.1} direction="up">
-              <div className={`group relative flex items-center gap-5 px-6 py-6 rounded-2xl border ${stat.border} ${stat.bg} hover:shadow-lg transition-all duration-500 hover:-translate-y-1 w-full`}>
+              <div className={`group relative flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3 sm:gap-5 px-4 sm:px-6 py-6 rounded-2xl border ${stat.border} ${stat.bg} hover:shadow-lg transition-all duration-500 hover:-translate-y-1 w-full`}>
                 {/* Icon */}
                 <div className={`shrink-0 flex h-10 w-10 items-center justify-center rounded-xl ${stat.bg} border ${stat.border} shadow-sm transition-transform duration-500 group-hover:scale-110`}>
                   <stat.icon className={`h-4 w-4 ${stat.color}`} />
                 </div>
                 {/* Number + label */}
-                <div>
+                <div className="flex flex-col items-center sm:items-start">
                   <AnimatedNumber target={stat.number} suffix={stat.suffix} color={stat.color} />
                   <p className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground/70 mt-0.5 leading-tight">
                     {stat.label}

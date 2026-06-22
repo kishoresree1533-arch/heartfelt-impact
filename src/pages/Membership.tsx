@@ -549,7 +549,7 @@ const Membership = () => {
 
               <motion.form onSubmit={handleSubmit} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="relative rounded-3xl border border-border bg-[#faf8f5] p-8 md:p-10 shadow-xl space-y-6 overflow-hidden"
+                className="relative rounded-3xl border border-border bg-[#faf8f5] p-6 md:p-10 shadow-xl space-y-6 overflow-hidden"
                 noValidate encType="multipart/form-data">
                 <div className="absolute top-6 left-6 h-px w-10 bg-gold opacity-40" />
                 <div className="absolute top-6 left-6 w-px h-10 bg-gold opacity-40" />
